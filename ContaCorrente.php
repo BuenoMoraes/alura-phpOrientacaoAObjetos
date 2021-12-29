@@ -39,6 +39,17 @@ class ContaCorrente{
 
     }
 
+    public function __get($atributo){
+        return $this->$atributo;
+    }
+
+    public function __set($atributo, $valor){
+        if ($atributo == "tiular" || $atributo == "saldo") {
+            throw new Exception("O atributo $atributo continua privado");
+        }
+         $this->$atributo =  $valor;
+    }
+/*
     Public function getTitular(){
         return $this->titular;
     }
@@ -46,4 +57,6 @@ class ContaCorrente{
     Public function getSaldo(){
         return $this->saldo;
     }
+*/
+
 }
