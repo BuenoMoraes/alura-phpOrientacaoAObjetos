@@ -1,6 +1,6 @@
 <?php
+require "Validacao.php";
 class ContaCorrente{
-
 
     private $titular;
 
@@ -23,6 +23,29 @@ class ContaCorrente{
 
     }
 
+    public function __set($atributo, $valor){
+
+        Validacao::protegeAtributo($atributo);
+
+         $this->sacar($valor);
+    }
+
+    public function transferir($valor, ContaCorrente $contaCorrente){
+
+        Validacao::verificaNumerico($valor);
+
+         $this->sacar($valor);
+
+         $contaCorrente->depositar($valor);
+
+         return $this;
+    }
+
+    Public function getTitular(){
+        return $this->titular;
+    }
+
+
     public function sacar($valor)
     {
 
@@ -43,17 +66,9 @@ class ContaCorrente{
         return $this->$atributo;
     }
 
-    public function __set($atributo, $valor){
-        if ($atributo == "tiular" || $atributo == "saldo") {
-            throw new Exception("O atributo $atributo continua privado");
-        }
-         $this->$atributo =  $valor;
-    }
+  
 /*
-    Public function getTitular(){
-        return $this->titular;
-    }
-
+  
     Public function getSaldo(){
         return $this->saldo;
     }

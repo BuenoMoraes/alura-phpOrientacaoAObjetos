@@ -1,18 +1,20 @@
 <?php
 
-public function __get($atributo){
+class Validacao{
+    public static function protegeAtributo($atributo){
+            if ($atributo == "tiular" || $atributo == "saldo") {
+                throw new Exception("O atributo $atributo continua privado");
+            }
+        }
 
-    Validacao::protegeAtributo($atributo);
 
-    return $this->$atributo;
 
+    public static function verificaNumerico($valor){
+
+        if (! is_numeric($valor)) {
+            throw new Exception("O atributo $atributo continua privado");
+        }
+
+    }
 }
-
-
-public function __set($atributo,$valor){
-
-    Validacao::protegeAtributo($atributo);
-
-    $this->$atributo = $valor;
-
-}
+?>
