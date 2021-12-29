@@ -65,11 +65,7 @@ class ContaCorrente{
         $this->saldo = $this->saldo + $valor;
         return $this;
 
-    }
-
-
-
-  
+    }  
 /*
   
     Public function getSaldo(){
