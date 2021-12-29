@@ -1,14 +1,18 @@
 <?php
 
-class Validacao{
+public function __get($atributo){
 
-    public static function protegeAtributo($atributo){
+    Validacao::protegeAtributo($atributo);
 
-        if($atributo == "titular" || $atributo == "saldo"){
+    return $this->$atributo;
 
-            throw new Exception("O atributo $atributo continua privado ");
+}
 
-        }
-    }
+
+public function __set($atributo,$valor){
+
+    Validacao::protegeAtributo($atributo);
+
+    $this->$atributo = $valor;
 
 }
